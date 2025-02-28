@@ -31,8 +31,8 @@ python main.py -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 -p yes --no_head
 Parameters:
 - `-f, --file`: Input file containing pairwise energy data
 - `-r, --ref`: Reference molecule (default: first molecule in data)
-- `-e, --ref_ene`: Reference energy value (default: 0.00)
-- `-p, --print`: Print option (yes: print detailed results, no: only molecule energies)
+- `-e, --energy`: Reference energy value 
+- `-p, --pair`: if yes: print detailed results of the pair ddG, no: only molecule energies
 - `--no_header`: Input file has no header row
 
 #### Input File Format
