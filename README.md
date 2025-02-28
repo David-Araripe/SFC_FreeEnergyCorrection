@@ -25,7 +25,7 @@ pip install -r requirements.txt
 #### Basic Usage
 Run the SFC algorithm on your input file:
 ```bash
-python sfc/main.py -f input_file.csv -r ref_mol -e ref_energy -p yes
+python main.py -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 -p yes --no_header
 ```
 
 Parameters:

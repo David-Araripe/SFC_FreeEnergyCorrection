@@ -105,7 +105,7 @@ def main():
 
     try:
         # Create output directory if it doesn't exist
-        output_dir = "sfc_output_compounds"
+        output_dir = "sfc_output"
         os.makedirs(output_dir, exist_ok=True)
 
         # Get input file name without extension for output file prefix
