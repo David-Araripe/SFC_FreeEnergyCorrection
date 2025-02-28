@@ -11,7 +11,7 @@ The State-Function Based Free Energy Correction (SFC) algorithm is designed to i
 ### Installation
 1. Clone this repository:
 ```bash
-git clone <repository_url>
+git clone git@github.com:ZheLi-Lab/State-Function-based-free-energy-correction-SFC-.git
 cd sfc
 ```
 
