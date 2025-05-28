@@ -33,9 +33,10 @@ def calculate_energies(
     def loss_function(G):
         loss = 0.0
         for i, j, adj_ddg, error, _ in pairs:
+            
             diff = (G[j] - G[i]) - adj_ddg
             if weight_idx == 3:  # Use exponential decay for weight
-                w = np.exp(-error)
+                w = 1/error**2
             else:  # Use constant weight
                 w = 1.0
             loss += w * diff**2
