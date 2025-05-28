@@ -4,7 +4,7 @@ from typing import List, Tuple, Dict, Set
 import logging
 
 # Configure logging
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class DataLoader:
     """Enhanced data loading class with validation and mapping"""
@@ -84,5 +84,5 @@ class DataLoader:
             if pair in seen_pairs:
                 print(f"Warning: Duplicate pair {lig1}-{lig2}")
             seen_pairs.add(pair)
-        logging.info(f"Total molecules: {len(self.id_map)}")
-        logging.info(f"Valid pairs: {len(self.get_mapped_pairs())}")
+        logging.debug(f"Total molecules: {len(self.id_map)}")
+        logging.debug(f"Valid pairs: {len(self.get_mapped_pairs())}")

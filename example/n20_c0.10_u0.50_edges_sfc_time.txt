@@ -1,0 +1,4 @@
+Timestamp: 2025-05-28 09:56:01
+Input file: example\n20_c0.10_u0.50_edges.csv
+Calculation scheme: SFC
+Execution time: 0.0075 seconds
