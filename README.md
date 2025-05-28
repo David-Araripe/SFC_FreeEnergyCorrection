@@ -61,3 +61,7 @@ The program generates several output files in the same directory as the input fi
 - `*_pair.txt`: Corrected pairwise ΔΔG
 - `*_node.txt`: Corrected ΔG
 - `*_time.txt`: Execution time and statistics
+
+
+### Reference
+Liu, R.; Lai, Y.; Yao, Y.; Huang, W.; Zhong, Y.; Luo, H.-B.; Li, Z. State Function-Based Correction: A Simple and Efficient Free-Energy Correction Algorithm for Large-Scale Relative Binding Free-Energy Calculations. J. Phys. Chem. Lett. https://doi.org/10.1021/acs.jpclett.5c01119.
