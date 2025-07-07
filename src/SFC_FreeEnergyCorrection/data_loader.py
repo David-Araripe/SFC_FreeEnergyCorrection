@@ -1,6 +1,6 @@
 import numpy as np
-from collections import defaultdict, deque, OrderedDict
-from typing import List, Tuple, Dict, Set
+from collections import OrderedDict
+from typing import List, Optional, Tuple
 import logging
 
 # Configure logging
@@ -8,13 +8,35 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 class DataLoader:
     """Enhanced data loading class with validation and mapping"""
-    def __init__(self, filename: str, ref_mol: str = None, skip_header: bool = True):
+    def __init__(self, from_lig=None, 
+                 to_lig=None, 
+                 b_ddG = None,
+                 err_b_ddG = None,
+                 ref_mol: str = None, 
+                 filename: Optional[str] = None, 
+                 skip_header: bool = True):
+        """Initialize the DataLoader with either a file or a list of values
+
+        Args:
+            from_lig: List of source ligands considering from -> to RBFE perturbation
+            to_lig: List of target ligands considering from -> to RBFE perturbation
+            b_ddG: List of ddG values for the RBFE calculation
+            err_b_ddG: List of error values
+            ref_mol: reference molecule name
+            filename: input file name
+            skip_header: skip the header line in the input file
+        """        
+
         logging.debug(f"Initializing DataLoader with file: {filename}, ref_mol: {ref_mol}, skip_header: {skip_header}")
         self.raw_pairs = []
         self.id_map = OrderedDict()
         self.rev_map = {}
         self.col_types = 3
-        self._load_data(filename, ref_mol, skip_header)
+        
+        if any(x is not None for x in [from_lig, to_lig, b_ddG, err_b_ddG]):
+            self._load_from_values(from_lig, to_lig, b_ddG, err_b_ddG, ref_mol)
+        else:
+            self._load_data(filename, ref_mol, skip_header)
 
     def _load_data(self, filename, ref_mol, skip_header):
         """Load and validate input data file"""
@@ -45,6 +67,32 @@ class DataLoader:
 
                 self.raw_pairs.append((lig1, lig2, orig_ddg, error))
                 all_ids.update([lig1, lig2])
+
+        # Handle reference molecule
+        all_ids = sorted(all_ids)
+        if ref_mol:
+            if ref_mol not in all_ids:
+                raise ValueError(f"Reference molecule '{ref_mol}' not found")
+            all_ids.remove(ref_mol)
+            all_ids = [ref_mol] + sorted(all_ids)
+
+        # Build mappings
+        self.id_map = {uid: idx for idx, uid in enumerate(all_ids)}
+        self.rev_map = {v: k for k, v in self.id_map.items()}
+
+    def _load_from_values(self, from_lig: List[str], to_lig: List[str], b_ddG: List[float], Error: Optional[List[float]] =None,  ref_mol: str = None):
+        """Load data from provided lists of values."""
+        all_ids = set()
+        self.col_types = 4 if Error is not None else 3
+        assert len(from_lig) == len(to_lig) == len(b_ddG), "All lists must have the same length"
+        for i in range(len(from_lig)):
+            lig1, lig2 = from_lig[i], to_lig[i]
+            orig_ddg = b_ddG[i]
+            error = Error[i] if Error is not None else 1.0
+            if np.isnan(error):
+                error = 1.0
+            self.raw_pairs.append((lig1, lig2, orig_ddg, error))
+            all_ids.update([lig1, lig2])
 
         # Handle reference molecule
         all_ids = sorted(all_ids)
