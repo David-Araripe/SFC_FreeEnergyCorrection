@@ -1,3 +1,8 @@
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 # State-Function Based Free Energy Correction (SFC)
 
 ### Overview
@@ -9,15 +14,9 @@ The State-Function Based Free Energy Correction (SFC) algorithm is designed to i
 - Supports using estimated errors of calculated ddG values as weights for optimization.
 
 ### Installation
-1. Clone this repository:
-```bash
-git clone git@github.com:ZheLi-Lab/State-Function-based-free-energy-correction-SFC-.git
-cd sfc
-```
 
-2. Install required dependencies:
 ```bash
-pip install -r requirements.txt
+python -m pip install git+https://github.com/David-Araripe/SFC_FreeEnergyCorrection.git
 ```
 
 ### Usage
@@ -25,7 +24,7 @@ pip install -r requirements.txt
 #### Basic Usage (based on least squares optimization)
 Run the SFC algorithm on your input file:
 ```bash
-python main.py -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 -p yes --no_header
+sfc -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 -p yes --no_header
 ```
 
 Parameters:
@@ -39,7 +38,7 @@ Parameters:
 To use the SFC algorithm with the matrix-based solver (instead of the optimizer), specify the `--mode matrix` option:
 
 ```bash
-python main.py -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 --mode matrix --no_header
+sfc -f example/n20_c0.10_u0.50_edges.csv -r 1 -e 0.0 --mode matrix --no_header
 ```
 
 Parameters:
@@ -61,7 +60,6 @@ The program generates several output files in the same directory as the input fi
 - `*_pair.txt`: Corrected pairwise ΔΔG
 - `*_node.txt`: Corrected ΔG
 - `*_time.txt`: Execution time and statistics
-
 
 ### Reference
 Liu, R.; Lai, Y.; Yao, Y.; Huang, W.; Zhong, Y.; Luo, H.-B.; Li, Z. State Function-Based Correction: A Simple and Efficient Free-Energy Correction Algorithm for Large-Scale Relative Binding Free-Energy Calculations. J. Phys. Chem. Lett. https://doi.org/10.1021/acs.jpclett.5c01119.
