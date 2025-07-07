@@ -50,9 +50,6 @@ where = ["src"]
 package-dir = {"" = "src"}
 include-package-data = true
 
-[tool.setuptools.dynamic]
-version = { attr = "SFC_FreeEnergyCorrection.__version__" }
-
 [tool.setuptools_scm]
 version_file = "src/SFC_FreeEnergyCorrection/_version.py"
 
