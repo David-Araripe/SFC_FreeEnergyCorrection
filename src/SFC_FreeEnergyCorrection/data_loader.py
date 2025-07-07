@@ -1,20 +1,26 @@
-import numpy as np
+import logging
 from collections import OrderedDict
 from typing import List, Optional, Tuple
-import logging
+
+import numpy as np
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
+
 
 class DataLoader:
     """Enhanced data loading class with validation and mapping"""
-    def __init__(self, from_lig=None, 
-                 to_lig=None, 
-                 b_ddG = None,
-                 err_b_ddG = None,
-                 ref_mol: str = None, 
-                 filename: Optional[str] = None, 
-                 skip_header: bool = True):
+
+    def __init__(
+        self,
+        from_lig=None,
+        to_lig=None,
+        b_ddG=None,
+        err_b_ddG=None,
+        ref_mol: str = None,
+        filename: Optional[str] = None,
+        skip_header: bool = True,
+    ):
         """Initialize the DataLoader with either a file or a list of values
 
         Args:
@@ -25,14 +31,14 @@ class DataLoader:
             ref_mol: reference molecule name
             filename: input file name
             skip_header: skip the header line in the input file
-        """        
+        """
 
         logging.debug(f"Initializing DataLoader with file: {filename}, ref_mol: {ref_mol}, skip_header: {skip_header}")
         self.raw_pairs = []
         self.id_map = OrderedDict()
         self.rev_map = {}
         self.col_types = 3
-        
+
         if any(x is not None for x in [from_lig, to_lig, b_ddG, err_b_ddG]):
             self._load_from_values(from_lig, to_lig, b_ddG, err_b_ddG, ref_mol)
         else:
@@ -41,11 +47,11 @@ class DataLoader:
     def _load_data(self, filename, ref_mol, skip_header):
         """Load and validate input data file"""
         all_ids = set()
-        
-        with open(filename, 'r') as f:
+
+        with open(filename, "r") as f:
             for line_num, line in enumerate(f):
                 line = line.strip()
-                if not line or line.startswith('#'):
+                if not line or line.startswith("#"):
                     continue
 
                 # Process header line
@@ -80,7 +86,14 @@ class DataLoader:
         self.id_map = {uid: idx for idx, uid in enumerate(all_ids)}
         self.rev_map = {v: k for k, v in self.id_map.items()}
 
-    def _load_from_values(self, from_lig: List[str], to_lig: List[str], b_ddG: List[float], Error: Optional[List[float]] =None,  ref_mol: str = None):
+    def _load_from_values(
+        self,
+        from_lig: List[str],
+        to_lig: List[str],
+        b_ddG: List[float],
+        Error: Optional[List[float]] = None,
+        ref_mol: str = None,
+    ):
         """Load data from provided lists of values."""
         all_ids = set()
         self.col_types = 4 if Error is not None else 3

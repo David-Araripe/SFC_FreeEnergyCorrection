@@ -1,8 +1,9 @@
+import numpy as np
+import pandas as pd  # Make sure to add this import at the top of your file
+
 from .data_loader import DataLoader
 from .energy_calculator import calculate_energies
 from .error_estimator import calculate_errors
-import numpy as np
-import pandas as pd  # Make sure to add this import at the top of your file
 
 
 def run_and_process_results(
