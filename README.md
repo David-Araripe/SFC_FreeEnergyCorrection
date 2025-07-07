@@ -3,6 +3,8 @@
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
+⚠️ Note ⚠️ that this is a fork of the original repo. For the original repo please visit https://github.com/ZheLi-Lab/State-Function-based-free-energy-correction-SFC-
+
 # State-Function Based Free Energy Correction (SFC)
 
 ### Overview
