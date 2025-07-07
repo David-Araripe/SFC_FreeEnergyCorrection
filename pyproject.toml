@@ -43,6 +43,12 @@ sfc = "SFC_FreeEnergyCorrection.sfc_cli:main"
 homepage = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
 repository = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
 [tool.setuptools]
 include-package-data = true
 
