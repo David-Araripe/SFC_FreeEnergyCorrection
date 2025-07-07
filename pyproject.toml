@@ -40,8 +40,8 @@ dev = [
 sfc = "SFC_FreeEnergyCorrection.sfc_cli:main"
 
 [project.urls]
-homepage = "https://github.com/David-Araripe/State-Function-based-free-energy-correction-SFC-"
-repository = "https://github.com/David-Araripe/State-Function-based-free-energy-correction-SFC-"
+homepage = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
+repository = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
 
 [tool.setuptools]
 include-package-data = true
