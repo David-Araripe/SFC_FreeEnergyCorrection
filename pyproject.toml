@@ -48,8 +48,6 @@ where = ["src"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
-
-[tool.setuptools]
 include-package-data = true
 
 [tool.setuptools.dynamic]
