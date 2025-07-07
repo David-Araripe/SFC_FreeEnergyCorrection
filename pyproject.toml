@@ -43,15 +43,14 @@ sfc = "SFC_FreeEnergyCorrection.sfc_cli:main"
 homepage = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
 repository = "https://github.com/David-Araripe/SFC_FreeEnergyCorrection"
 
-[tool.setuptools.packages.find]
-where = ["src"]
-
 [tool.setuptools]
-package-dir = {"" = "src"}
 include-package-data = true
 
+[tool.setuptools.dynamic]
+version = { attr = "SFC_FreeEnergyCorrection.__version__" }
+
 [tool.setuptools_scm]
-version_file = "src/SFC_FreeEnergyCorrection/_version.py"
+write_to = "src/SFC_FreeEnergyCorrection/_version.py"
 
 [tool.isort]
 profile = "black"
