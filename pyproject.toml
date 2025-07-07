@@ -54,7 +54,7 @@ include-package-data = true
 version = { attr = "SFC_FreeEnergyCorrection.__version__" }
 
 [tool.setuptools_scm]
-write_to = "src/SFC_FreeEnergyCorrection/_version.py"
+version_file = "src/SFC_FreeEnergyCorrection/_version.py"
 
 [tool.isort]
 profile = "black"
